@@ -3,11 +3,14 @@ import re
 import ast
 import numpy as np
 import pandas as pd
+
+# TODO: в этом скрипте испорт check_file не работает
+# будь аккуратна с этим, несмотра на то, что Pycharm может подхватить эту зависимость
 from check_file import file_exist
 import re
 
 
-
+# TODO: абсолютные пути в проектах, которые кто-то может инмпортнуть - зло. Ничего не запускается и не работает
 file_path = r"C:\Users\Nat\Desktop\parser\input_data\test_schedule.inc"
 data = file_exist(file_path)
 
@@ -36,7 +39,7 @@ def read_schedule():
 def inspect_schedule():
     return
 
-
+# TODO: не ленитесь оформлять код: здесь и ниже убирать ненужные функции, переносы и оформить отступы по PEP-8. Pycharm автоматически подсвечивает все косяки
 
 def clean_schedule(data):
     i = 0
@@ -75,7 +78,6 @@ def parse_keyword_block():
     return
 
 
-
 def parse_keyword_COMPDAT_line(well_comp_line):
     well_comp_line = default_params_unpacking_in_line(well_comp_line)
     well_comp_line = re.sub('/', ' ', well_comp_line)
@@ -109,6 +111,7 @@ def result_to_csv():
     return
 
 def parse_schedule(clean_file_text, keywords_tuple = ("DATES", "COMPDAT", "COMPDATL")):
+#TODO: я верю, что функция работает правильно т.к. она проходит тесты. Но её очень тяжело читать из-за размера
     result = []
     data = clean_file_text.split('\n')
     data = clean_schedule(data)
@@ -159,7 +162,7 @@ def parse_schedule(clean_file_text, keywords_tuple = ("DATES", "COMPDAT", "COMPD
                          line.split()
                          result.append(line)
 
-
+# TODO: разбивай на логические блоки и раскидывай по функциям или хотя бы комментируй. Вернувшись к коду через пару недель, тебе будет тяжело вспомнить, почему он работает
         if len(dates_in_block) > 1:
             for i in range(len(dates_in_block)-1):
                 result.append([dates_in_block[i], np.nan])
