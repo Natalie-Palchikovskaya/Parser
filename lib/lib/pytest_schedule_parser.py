@@ -1,6 +1,7 @@
 import pytest
 import numpy as np
 import pandas as pd
+# аналогично с основным скриптом - тут нет папки lib. Не ленись прогнать тест перед тем, как загружать на репозиторий.
 from lib import schedule_parser
 
 class TestUnitParser:
@@ -15,10 +16,10 @@ class TestUnitParser:
                   "Saturation table", "Transmissibility factor", "Well bore diameter", "Effective Kh",
                   "Skin factor", "D-factor", "Dir_well_penetrates_grid_block", "Press_eq_radius")
 
-        # TODO: с названиями стоит подумать
         self.input_file_reference = "data/test_schedule_input_reference.inc"
         self.output_csv_reference = "data/schedule_output_reference.csv"
-
+        
+        # TODO: абсолютные пути в проектах, которые кто-то может инмпортнуть - зло. Ничего не запускается и не работает
         self.clean_file = r"C:\Users\Nat\Desktop\Parser2\data\handled_schedule.inc"
         #self.clean_file = "data/handled_schedule.inc"
         self.output_csv = "data/schedule_output.csv"
